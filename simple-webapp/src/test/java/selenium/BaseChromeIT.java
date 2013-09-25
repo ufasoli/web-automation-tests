@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created with IntelliJ IDEA.
  * User: ULF
@@ -18,14 +20,14 @@ public class BaseChromeIT {
 
 
     @Before
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "ext\\chromedriver.exe");
         webDriver = new ChromeDriver();
 
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         webDriver.close();
     }
 }

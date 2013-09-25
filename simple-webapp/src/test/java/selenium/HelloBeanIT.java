@@ -3,6 +3,8 @@ package selenium;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -24,7 +26,7 @@ public class HelloBeanIT extends BaseChromeIT {
         webDriver.get(url);
 
         verifyPageTitle("Simple selenium tests jsf page");
-        enterUserName("Trivadis") ;
+        enterUserName("Trivadis");
         verifyMessage("Hello Trivadis !!!");
     }
 
@@ -46,13 +48,16 @@ public class HelloBeanIT extends BaseChromeIT {
     }
 
     private void verifyMessage(String expectedMessage) {
-        // find the input text box
-        WebElement element = webDriver.findElement(By.name("msg"));
-        System.out.println(element.getText());
-         assertThat(element.getText(), equalTo(expectedMessage));
+
+        // wait until the ajax request is processed and the msg element is
+        // rendered in the DOM
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        WebElement element = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.id("msg")));
+
+
+        assertThat(element.getText(), equalTo(expectedMessage));
     }
-
-
 
 
 }
