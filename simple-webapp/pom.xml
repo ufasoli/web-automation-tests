@@ -72,14 +72,14 @@
         </dependency>
 
 
-        <dependency>
+       <!-- <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
             <scope>test</scope>
             <version>${selenium.server.version}</version>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-common</artifactId>
             <version>${selenium.common.version}</version>
@@ -90,7 +90,7 @@
             <artifactId>selenium-api</artifactId>
             <version>${selenium.api.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
 
         <!-- Matcher utils-->
@@ -258,6 +258,11 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+
+                            <forkMode>never</forkMode>
+
+                        </configuration>
                     </plugin>
 
 
