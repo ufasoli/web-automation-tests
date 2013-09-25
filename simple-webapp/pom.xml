@@ -106,10 +106,10 @@
             <version>${hamcrest.library.version}</version>
         </dependency>
     </dependencies>
+
+
     <build>
-
         <plugins>
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -189,6 +189,8 @@
                         <configuration>
                             <path>/</path>
                             <port>9999</port>
+                            <!--start tomcat on a separate process
+                            to prevent blocking the maven build -->
                             <fork>true</fork>
                         </configuration>
                         <executions>
@@ -266,9 +268,11 @@
                             <!-- skips surefire tests without skipping failsafe tests.
                                      Property value seems to magically default to false -->
                             <excludes>
-                                <exclude>**/Test.java</exclude>
+                                <exclude>**/**IT.java</exclude>
                             </excludes>
                             <skip>true</skip>
+                            <skipExec>true</skipExec>
+                            <skipTests>true</skipTests>
                         </configuration>
                     </plugin>
                 </plugins>
