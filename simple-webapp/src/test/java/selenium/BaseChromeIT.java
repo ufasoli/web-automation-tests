@@ -4,26 +4,28 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import util.ConstantsLoader;
 
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ULF
- * Date: 24.09.13
- * Time: 15:35
- * To change this template use File | Settings | File Templates.
+ * User: Ulises Fasoli
+ * Date: 26.09.13
+ * Time: 09:22
  */
 public class BaseChromeIT {
 
     protected WebDriver webDriver;
-
+    protected Properties constants;
 
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "ext\\chromedriver.exe");
         webDriver = new ChromeDriver();
-
+        webDriver.manage().timeouts().implicitlyWait (2, TimeUnit.SECONDS);
+        constants = ConstantsLoader.loader().getConstants();
     }
 
     @After

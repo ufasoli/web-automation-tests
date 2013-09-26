@@ -11,23 +11,21 @@ import static org.hamcrest.Matchers.*;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ULF
- * Date: 24.09.13
- * Time: 15:34
- * To change this template use File | Settings | File Templates.
+ * User: Ulises Fasoli
+ * Date: 26.09.13
+ * Time: 09:22
  */
 public class HelloBeanIT extends BaseChromeIT {
 
-    private final String url = "http://localhost:9999/";
 
     @Test
     public void sayHelloTest() {
-
+        final String url = "http://localhost:9999/";
         webDriver.get(url);
 
-        verifyPageTitle("Simple selenium tests jsf page");
-        enterUserName("Trivadis");
-        verifyMessage("Hello Trivadis !!!");
+        verifyPageTitle(constants.getProperty("helloBean.pageTitle"));
+        enterUserName(constants.getProperty("helloBean.userName"));
+        verifyMessage(constants.getProperty("helloBean.outputMessage"));
     }
 
     private void verifyPageTitle(String expectedTitle) {
@@ -54,7 +52,6 @@ public class HelloBeanIT extends BaseChromeIT {
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         WebElement element = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("msg")));
-
 
         assertThat(element.getText(), equalTo(expectedMessage));
     }
