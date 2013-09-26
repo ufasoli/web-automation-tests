@@ -1,1 +1,6 @@
-This file was created by IntelliJ IDEA 12.1.4 for binding GitHub repository
+A simple project to get started using selenium and maven for the automation of acceptance tests.
+For the moment the tests are executed only using the chrome  web driver.
+Eventually it will grow to use selenium grid to execute parallel tests in multiple browsers
+to run the tests execute
+
+mvn clean verify -Pselenium
