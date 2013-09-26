@@ -1,0 +1,11 @@
+<Host>
+
+    <Context reloadable="true">
+
+        <WatchedResource>C:\dev\workspaces\idea\web-automation-tests\simple-webapp\src\main\webapp</WatchedResource>
+
+
+
+    </Context>
+
+</Host>

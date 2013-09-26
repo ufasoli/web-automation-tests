@@ -14,6 +14,7 @@ public class HelloBean implements Serializable {
     private String msg;
     private String title = "Selenium tests simple jsf page";
 
+
     public String getTitle() {
         return title;
     }
@@ -47,4 +48,6 @@ public class HelloBean implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

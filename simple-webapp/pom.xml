@@ -84,6 +84,11 @@
             <artifactId>hamcrest-library</artifactId>
             <version>${hamcrest.library.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
     </dependencies>
 
 
@@ -160,7 +165,21 @@
                         <configuration>
                             <path>/</path>
                             <port>9999</port>
+                            <contextReloadable>true</contextReloadable>
+                            <contextFile>${project.basedir}/src/main/resources/META-INF/context.xml</contextFile>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>run</id>
+                                <goals>
+                                    <goal>run-war</goal>
+                                </goals>
+                                <phase>verify</phase>
+                            </execution>
+
+                        </executions>
+
+
                     </plugin>
                 </plugins>
             </build>
