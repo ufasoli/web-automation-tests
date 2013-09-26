@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: ULF
+  Date: 26.09.13
+  Time: 10:49
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title">Simple form selenium test</ui:define>
+
+    <ui:define name="content">
+
+
+        <div class="row">
+            <div class="twelve columns">
+                <h2>Simple form</h2>
+
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+        <div class="twelve columns">
+        <h:form prependId="false">
+            <h:messages id="error-msg" showDetail="false">
+
+
+            </h:messages>
+
+            <span class="label">Your name ?</span>
+            <h:inputText id="username" requiredMessage="username is a required field"
+                         value="#{simpleFormBean.username}" required="true" />
+
+            <span class="label">What language do you use ?</span>
+            <h:selectManyCheckbox id="expertiseOptions" value="#{simpleFormBean.usedLanguages}">
+                <f:selectItems value="#{simpleFormBean.languages}"/>
+            </h:selectManyCheckbox>
+
+
+            <h:commandButton action="#{simpleFormBean.processForm}" styleClass="button" value="process form" id="submit">
+                <f:ajax render="error-msg :msg-wrapper" execute="@all" />
+            </h:commandButton>
+        </h:form>
+
+        </div>
+        </div>
+
+        <h:panelGroup id="msg-wrapper">
+            <h:panelGroup id="msg-inner-wrapper" rendered="#{simpleFormBean.usedLanguagesString ne null}">
+                <div class="alert-box">
+                    <h:outputText value="#{simpleFormBean.usedLanguagesString}" id="msg"/>
+                </div>
+            </h:panelGroup>
+
+
+        </h:panelGroup>
+
+    </ui:define>
+</ui:composition>
+
+</html>

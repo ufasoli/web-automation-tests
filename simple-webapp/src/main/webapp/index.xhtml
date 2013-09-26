@@ -10,69 +10,52 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
-<h:head>
-    <title>Simple selenium tests jsf page</title>
+<ui:composition template="WEB-INF/templates/template.xhtml">
 
-    <link rel="stylesheet" href="#{request.contextPath}stylesheets/foundation.min.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}stylesheets/app.css"/>
+    <ui:define name="title">Simple selenium tests jsf page</ui:define>
 
-    <script src="#{request.contextPath}javascripts/modernizr.foundation.js" type="text/javascript3"></script>
-</h:head>
+    <ui:define name="content">
+        <div class="row">
+            <div class="twelve columns">
+                <h2><h:outputText value="#{helloBean.title}"/></h2>
 
-<h:body>
-
-    <div class="row">
-        <div class="twelve columns">
-            <h2><h:outputText value="#{helloBean.title}"/></h2>
-
-            <hr/>
+                <hr/>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="twelve columns">
-            <h:form prependId="false">
-                <span class="label">Your name ?</span>
-                <h:inputText id="username" value="#{helloBean.name}" />
+        <div class="row">
+            <div class="twelve columns">
+                <h:form prependId="false">
+                    <span class="label">Your name ?</span>
+                    <h:inputText id="username" value="#{helloBean.name}" />
 
-                <h:commandButton action="#{helloBean.printMessage}" value="Say Hello" styleClass="button" id="submit">
-                    <f:ajax render=":msg-wrapper" execute="username"/>
-                </h:commandButton>
+                    <h:commandButton action="#{helloBean.printMessage}" value="Say Hello" styleClass="button" id="submit">
+                        <f:ajax render=":msg-wrapper" execute="username"/>
+                    </h:commandButton>
 
-            </h:form>
+                </h:form>
 
-            <h:panelGroup id="msg-wrapper">
-                <h:panelGroup id="msg-inner-wrapper" rendered="#{helloBean.msg ne null}">
-                    <div class="alert-box">
-                        <h:outputText value="#{helloBean.msg}" id="msg"/>
-                    </div>
+                <h:panelGroup id="msg-wrapper">
+                    <h:panelGroup id="msg-inner-wrapper" rendered="#{helloBean.msg ne null}">
+                        <div class="alert-box">
+                            <h:outputText value="#{helloBean.msg}" id="msg"/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup id="warning-msg" rendered="#{helloBean.msg eq null}">
+                        <div class="alert-box secondary">
+                            Please enter your name in the input field
+                        </div>
+                    </h:panelGroup>
                 </h:panelGroup>
-
-                <h:panelGroup id="warning-msg" rendered="#{helloBean.msg eq null}">
-                    <div class="alert-box secondary">
-                        Please enter your name in the input field
-                    </div>
-                </h:panelGroup>
-            </h:panelGroup>
+            </div>
         </div>
-    </div>
 
-
-    <script src="javascripts/jquery.js" type="text/javascript"></script>
-    <script src="javascripts/foundation.min.js" type="text/javascript"></script>
-
-    <!-- Initialize JS Plugins -->
-    <script src="javascripts/app.js" type="text/javascript"></script>
-
-
-    <script type="text/javascript">
-        $(window).load(function () {
-            $("#featured").orbit();
-        });
-    </script>
-</h:body>
+    </ui:define>
+</ui:composition>
 
 </html>
