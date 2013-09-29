@@ -31,5 +31,7 @@ public class BaseChromeIT {
     @After
     public void tearDown() {
         webDriver.close();
+        webDriver.quit();
+
     }
 }
