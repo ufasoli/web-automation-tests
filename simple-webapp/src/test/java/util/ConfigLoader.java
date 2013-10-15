@@ -9,14 +9,14 @@ import java.util.Properties;
  * Date: 26.09.13
  * Time: 09:22
  */
-public class ConfigLoader {
+public class ConfigLoader implements PropertiesLoader{
 
     private static ConfigLoader instance = null;
     private Properties constants;
 
 
     private ConfigLoader() {
-        final String propertiesFileName = "values.properties";
+        final String propertiesFileName = "config.properties";
 
         constants = new Properties();
 
@@ -48,7 +48,8 @@ public class ConfigLoader {
         return instance;
     }
 
-    public Properties getConstants() {
+    @Override
+    public Properties getProperties() {
         return constants;
     }
 }

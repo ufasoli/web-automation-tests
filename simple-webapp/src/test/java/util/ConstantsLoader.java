@@ -9,16 +9,16 @@ import java.util.Properties;
  * Date: 26.09.13
  * Time: 09:22
  */
-public class ConstantsLoader {
+public class ConstantsLoader implements PropertiesLoader{
 
     private static ConstantsLoader instance = null;
-    private Properties constants;
+    private Properties properties;
 
 
     private ConstantsLoader() {
         final String propertiesFileName = "values.properties";
 
-        constants = new Properties();
+        properties = new Properties();
 
         InputStream inputStream = ConstantsLoader.class.getClassLoader().getResourceAsStream(propertiesFileName);
 
@@ -31,7 +31,7 @@ public class ConstantsLoader {
 
 
         try {
-            constants.load(inputStream);
+            properties.load(inputStream);
         } catch (Exception e) {
             throw new RuntimeException(String.format("An error occurred while loading the properties file : %s. Error : %s", propertiesFileName, e.getMessage()));
         }
@@ -48,7 +48,8 @@ public class ConstantsLoader {
         return instance;
     }
 
-    public Properties getConstants() {
-        return constants;
+    @Override
+    public Properties getProperties() {
+        return properties;
     }
 }
