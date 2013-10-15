@@ -149,7 +149,27 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+
+        </resources>
+
+        <testResources>
+
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
     </build>
+
+
+
+
 
 
     <profiles>
@@ -265,5 +285,39 @@
             </build>
         </profile>
 
+        <!-- OS specific profiles-->
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+
+            </activation>
+            <properties>
+                <chrome.driver.path>ext/chromedriver.exe</chrome.driver.path>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>linux</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>mac</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <chrome.driver.path>ext/chromedriver.ext</chrome.driver.path>
+            </properties>
+        </profile>
     </profiles>
 </project>
