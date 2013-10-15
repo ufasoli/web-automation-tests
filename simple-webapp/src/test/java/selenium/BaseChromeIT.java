@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import util.ConfigLoader;
 import util.ConstantsLoader;
 
 import java.util.Properties;
@@ -19,13 +20,19 @@ public class BaseChromeIT {
 
     protected WebDriver webDriver;
     protected Properties constants;
+    protected Properties config;
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "ext\\chromedriver.exe");
+        final String CHROME_DRIVER_PROPERTY = "chrome.driver.path";
+        final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
+
+        constants = ConstantsLoader.loader().getProperties();
+        config = ConfigLoader.loader().getProperties();
+
+        System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, config.getProperty(CHROME_DRIVER_PROPERTY));
         webDriver = new ChromeDriver();
         webDriver.manage().timeouts().implicitlyWait (2, TimeUnit.SECONDS);
-        constants = ConstantsLoader.loader().getConstants();
     }
 
     @After

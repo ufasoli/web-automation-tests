@@ -20,8 +20,8 @@ public class HelloBeanIT extends BaseChromeIT {
 
     @Test
     public void sayHelloTest() {
-        final String url = "http://localhost:9999/";
-        webDriver.get(url);
+        final String BASE_URL = "http://localhost:9999/";
+        webDriver.get(BASE_URL);
 
         verifyPageTitle(constants.getProperty("helloBean.pageTitle"));
         enterUserName(constants.getProperty("helloBean.userName"));
