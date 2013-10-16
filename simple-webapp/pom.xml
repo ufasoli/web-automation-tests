@@ -70,6 +70,11 @@
             <version>${selenium.java.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>2.9.0</version>
+        </dependency>
 
 
         <!-- Matcher utils-->
@@ -295,7 +300,7 @@
 
             </activation>
             <properties>
-                <chrome.driver.path>ext/chromedriver.exe</chrome.driver.path>
+                <chrome.driver.path>ext/webdrivers/chrome/chromedriver_windows.exe</chrome.driver.path>
             </properties>
         </profile>
 
@@ -306,6 +311,9 @@
                     <family>unix</family>
                 </os>
             </activation>
+            <properties>
+                <chrome.driver.path>ext/webdrivers/chrome/chromedriver_linux</chrome.driver.path>
+            </properties>
         </profile>
 
         <profile>
@@ -316,7 +324,7 @@
                 </os>
             </activation>
             <properties>
-                <chrome.driver.path>ext/chromedriver.ext</chrome.driver.path>
+                <chrome.driver.path>ext/webdrivers/chrome/chromedriver_mac</chrome.driver.path>
             </properties>
         </profile>
     </profiles>

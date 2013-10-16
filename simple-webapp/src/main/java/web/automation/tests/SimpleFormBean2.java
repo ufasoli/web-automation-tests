@@ -21,13 +21,10 @@ import java.util.List;
 @ManagedBean
 public class SimpleFormBean2 implements Serializable {
 
-    private List<String> languages = Arrays.asList("Java", "Ceylon", "Scala", "Groovy");
-
-
+    private List<String> frameworks = Arrays.asList("JSF", "Spring", "Hibernate", "Grails", "Play!");
     private String username;
-    private List<String> usedLanguages;
-
-    private String usedLanguagesString=null;
+    private List<String> usedFrameworks;
+    private String usedFrameworksString =null;
 
 
     public void processForm(){
@@ -35,19 +32,19 @@ public class SimpleFormBean2 implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Form successfully processed", "Form successfully processed" ));
 
-        StringBuilder sb = new StringBuilder();
-        usedLanguagesString = String.format("You use the following languages : %s", Joiner.on(", ").join(usedLanguages));
+
+        usedFrameworksString = String.format("You use the following frameworks : %s", Joiner.on(", ").join(usedFrameworks));
 
     }
 
 
 
-    public List<String> getLanguages() {
-        return languages;
+    public List<String> getFrameworks() {
+        return frameworks;
     }
 
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
+    public void setFrameworks(List<String> frameworks) {
+        this.frameworks = frameworks;
     }
 
     public void setUsername(String username) {
@@ -58,19 +55,19 @@ public class SimpleFormBean2 implements Serializable {
         return username;
     }
 
-    public void setUsedLanguages(List<String> usedLanguages) {
-        this.usedLanguages = usedLanguages;
+    public void setUsedFrameworks(List<String> usedFrameworks) {
+        this.usedFrameworks = usedFrameworks;
     }
 
-    public List<String> getUsedLanguages() {
-        return usedLanguages;
+    public List<String> getUsedFrameworks() {
+        return usedFrameworks;
     }
 
-    public void setUsedLanguagesString(String usedLanguagesString) {
-        this.usedLanguagesString = usedLanguagesString;
+    public void setUsedFrameworksString(String usedFrameworksString) {
+        this.usedFrameworksString = usedFrameworksString;
     }
 
-    public String getUsedLanguagesString() {
-        return usedLanguagesString;
+    public String getUsedFrameworksString() {
+        return usedFrameworksString;
     }
 }

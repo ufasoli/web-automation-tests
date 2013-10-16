@@ -22,11 +22,8 @@ import java.util.List;
 public class SimpleFormBean implements Serializable {
 
     private List<String> languages = Arrays.asList("Java", "Ceylon", "Scala", "Groovy");
-
-
     private String username;
     private List<String> usedLanguages;
-
     private String usedLanguagesString=null;
 
 
@@ -35,7 +32,6 @@ public class SimpleFormBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Form successfully processed", "Form successfully processed" ));
 
-        StringBuilder sb = new StringBuilder();
         usedLanguagesString = String.format("You use the following languages : %s", Joiner.on(", ").join(usedLanguages));
 
     }

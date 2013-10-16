@@ -15,14 +15,14 @@
 
 <ui:composition template="WEB-INF/templates/template.xhtml">
 
-    <ui:define name="title">Simple form selenium test</ui:define>
+    <ui:define name="title">Simple form2 selenium test</ui:define>
 
     <ui:define name="content">
 
 
         <div class="row">
             <div class="twelve columns">
-                <h2>Simple form</h2>
+                <h2>Simple form 2</h2>
 
                 <hr/>
             </div>
@@ -32,20 +32,20 @@
         <h:form prependId="false">
             <h:messages id="error-msg" showDetail="false">
 
-
             </h:messages>
 
             <span class="label">Your name ?</span>
             <h:inputText id="username" requiredMessage="username is a required field"
-                         value="#{simpleFormBean.username}" required="true" />
+                         value="#{simpleFormBean2.username}" required="true" />
 
             <span class="label">What language do you use ?</span>
-            <h:selectManyCheckbox id="expertiseOptions" value="#{simpleFormBean.usedLanguages}">
-                <f:selectItems value="#{simpleFormBean.languages}"/>
-            </h:selectManyCheckbox>
+
+            <h:selectManyListbox id="usedFrameworks" value="#{simpleFormBean2.usedFrameworks}">
+                <f:selectItems value="#{simpleFormBean2.frameworks}"/>
+            </h:selectManyListbox>
 
 
-            <h:commandButton action="#{simpleFormBean.processForm}" styleClass="button" value="process form" id="submit">
+            <h:commandButton action="#{simpleFormBean2.processForm}" styleClass="button" value="process form" id="submit">
                 <f:ajax render="error-msg :msg-wrapper" execute="@all" />
             </h:commandButton>
         </h:form>
@@ -54,9 +54,9 @@
         </div>
 
         <h:panelGroup id="msg-wrapper">
-            <h:panelGroup id="msg-inner-wrapper" rendered="#{simpleFormBean.usedLanguagesString ne null}">
+            <h:panelGroup id="msg-inner-wrapper" rendered="#{simpleFormBean2.usedFrameworksString ne null}">
                 <div class="alert-box">
-                    <h:outputText value="#{simpleFormBean.usedLanguagesString}" id="msg"/>
+                    <h:outputText value="#{simpleFormBean2.usedFrameworksString}" id="msg"/>
                 </div>
             </h:panelGroup>
 

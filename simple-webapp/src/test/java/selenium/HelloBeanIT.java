@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.base.BaseChromeIT;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -19,7 +20,11 @@ public class HelloBeanIT extends BaseChromeIT {
 
 
     @Test
-    public void sayHelloTest() {
+    public void sayHelloTest() throws InterruptedException {
+
+        System.out.println("******************************");
+        System.out.println(String.format("Begin tests for class : %s ", HelloBeanIT.class));
+        System.out.println("******************************");
         final String BASE_URL = "http://localhost:9999/";
         webDriver.get(BASE_URL);
 
@@ -33,9 +38,13 @@ public class HelloBeanIT extends BaseChromeIT {
         assertThat(webDriver.getTitle(), equalTo(expectedTitle));
     }
 
-    private void enterUserName(String username) {
+    private void enterUserName(String username) throws InterruptedException {
+
+       writeMessage("About to test submitting a username", false);
+
         // find the input text box
         WebElement element = webDriver.findElement(By.name("username"));
+
 
         // set the user name in input text box
         element.sendKeys(username);
@@ -47,6 +56,7 @@ public class HelloBeanIT extends BaseChromeIT {
 
     private void verifyMessage(String expectedMessage) {
 
+        writeMessage(String.format("Expected result should be : %s", expectedMessage), true);
         // wait until the ajax request is processed and the msg element is
         // rendered in the DOM
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
