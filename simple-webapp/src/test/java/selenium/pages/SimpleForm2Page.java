@@ -24,6 +24,7 @@ public class SimpleForm2Page {
     private WebElement msg;
 
 
+
     public void sendUsername(String _username){
 
         username.sendKeys(_username);

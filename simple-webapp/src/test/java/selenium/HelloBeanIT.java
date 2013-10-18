@@ -63,7 +63,9 @@ public class HelloBeanIT extends BaseChromeIT {
         WebElement element = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("msg")));
 
+
         assertThat(element.getText(), equalTo(expectedMessage));
+        assertThat(Integer.valueOf(element.getText()), greaterThan(2));
     }
 
 

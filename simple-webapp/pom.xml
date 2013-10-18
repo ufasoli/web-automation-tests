@@ -70,11 +70,6 @@
             <version>${selenium.java.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>2.9.0</version>
-        </dependency>
 
 
         <!-- Matcher utils-->
@@ -175,7 +170,7 @@
 
 
 
-
+               ¨<!-- Profiles Configuration-->
 
     <profiles>
 
@@ -206,6 +201,8 @@
 
 
                     </plugin>
+
+
                 </plugins>
             </build>
         </profile>
@@ -272,12 +269,12 @@
                     </plugin>
 
 
-                    <plugin>
+                   <!-- <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.14</version>
                         <configuration>
-                            <!-- skips surefire tests without skipping failsafe tests.
-                                     Property value seems to magically default to false -->
+                            &lt;!&ndash; skips surefire tests without skipping failsafe tests.
+                                     Property value seems to magically default to false &ndash;&gt;
                             <excludes>
                                 <exclude>**/**IT.java</exclude>
                             </excludes>
@@ -285,7 +282,7 @@
                             <skipExec>true</skipExec>
                             <skipTests>true</skipTests>
                         </configuration>
-                    </plugin>
+                    </plugin>-->
                 </plugins>
             </build>
         </profile>
