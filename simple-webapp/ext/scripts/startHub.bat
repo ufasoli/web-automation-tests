@@ -1,0 +1,1 @@
+java -jar C:\dev\bin\selenium-server\selenium-server-standalone-2.36.0.jar -role hub

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.chrome.ChromeDriver;
 import selenium.base.BaseWebDriverIT;
+import selenium.util.WebDriverFactory;
 import util.ConfigLoader;
 import util.ConstantsLoader;
 
@@ -24,15 +25,12 @@ public class BaseChromeIT extends BaseWebDriverIT {
 
     @Before
     public void setUp() {
-        final String CHROME_DRIVER_PROPERTY = "chrome.driver.path";
-        final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
+
 
         constants = ConstantsLoader.loader().getProperties();
         config = ConfigLoader.loader().getProperties();
 
-        System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, config.getProperty(CHROME_DRIVER_PROPERTY));
-        webDriver = new ChromeDriver();
-        webDriver.manage().timeouts().implicitlyWait (5, TimeUnit.SECONDS);
+        webDriver = WebDriverFactory.getDriver(WebDriverFactory.Driver.CHROME, true);
     }
 
     @After
