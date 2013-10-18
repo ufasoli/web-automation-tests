@@ -2,10 +2,12 @@ package selenium;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.base.BaseChromeIT;
+import selenium.base.BaseWebDriverIT;
+import selenium.util.WebDriverFactory;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -16,7 +18,7 @@ import static org.hamcrest.Matchers.*;
  * Date: 26.09.13
  * Time: 09:22
  */
-public class HelloBeanIT extends BaseChromeIT {
+public class HelloBeanIT extends BaseWebDriverIT {
 
 
     @Test
@@ -26,21 +28,32 @@ public class HelloBeanIT extends BaseChromeIT {
         System.out.println(String.format("Begin tests for class : %s ", HelloBeanIT.class));
         System.out.println("******************************");
         final String BASE_URL = "http://localhost:9999/";
-        webDriver.get(BASE_URL);
 
-        verifyPageTitle(constants.getProperty("helloBean.pageTitle"));
-        enterUserName(constants.getProperty("helloBean.userName"));
-        verifyMessage(constants.getProperty("helloBean.outputMessage"));
+        for (WebDriverFactory.Driver driver : avilableDrivers) {
+
+
+            WebDriver webDriver = WebDriverFactory.getDriver(driver, true);
+            webDriver.get(BASE_URL);
+
+            verifyPageTitle(constants.getProperty("helloBean.pageTitle"), webDriver);
+            enterUserName(constants.getProperty("helloBean.userName"), webDriver);
+            verifyMessage(constants.getProperty("helloBean.outputMessage"), webDriver);
+
+
+            webDriver.quit();
+        }
+
+
     }
 
-    private void verifyPageTitle(String expectedTitle) {
+    private void verifyPageTitle(String expectedTitle, WebDriver webDriver) {
 
         assertThat(webDriver.getTitle(), equalTo(expectedTitle));
     }
 
-    private void enterUserName(String username) throws InterruptedException {
+    private void enterUserName(String username, WebDriver webDriver) throws InterruptedException {
 
-       writeMessage("About to test submitting a username", false);
+        writeMessage("About to test submitting a username", false, webDriver);
 
         // find the input text box
         WebElement element = webDriver.findElement(By.name("username"));
@@ -54,9 +67,9 @@ public class HelloBeanIT extends BaseChromeIT {
         submit.click();
     }
 
-    private void verifyMessage(String expectedMessage) {
+    private void verifyMessage(String expectedMessage, WebDriver webDriver) {
 
-        writeMessage(String.format("Expected result should be : %s", expectedMessage), true);
+        writeMessage(String.format("Expected result should be : %s", expectedMessage), true, webDriver);
         // wait until the ajax request is processed and the msg element is
         // rendered in the DOM
         WebDriverWait wait = new WebDriverWait(webDriver, 10);

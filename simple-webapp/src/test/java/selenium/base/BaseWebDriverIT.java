@@ -1,10 +1,16 @@
 package selenium.base;
 
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.util.WebDriverFactory;
+import util.ConfigLoader;
+import util.ConstantsLoader;
+
+import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,10 +20,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class BaseWebDriverIT {
 
-    protected WebDriver webDriver;
+
+
+    protected WebDriverFactory.Driver [] avilableDrivers = {WebDriverFactory.Driver.CHROME, WebDriverFactory.Driver.FIREFOX};
 
     public final String DEFAULT_MSG_DIV_ID = "#demo-message";
     public final String DEFAULT_MSG_WRAPPER_DIV_ID = "#demo-message-wrapper";
+
+
+    protected Properties constants;
+    protected Properties config;
+
+    @Before
+    public void setUp() {
+
+
+        constants = ConstantsLoader.loader().getProperties();
+        config = ConfigLoader.loader().getProperties();
+    }
+
 
 
     /**
@@ -27,7 +48,7 @@ public class BaseWebDriverIT {
      * @param message the message to write on the page
      * @param append whether to append the message to the existing text ( a <br /> will be prepended to the message)
      */
-    protected void writeMessage(String message, Boolean append){
+    protected void writeMessage(String message, Boolean append, WebDriver webDriver){
 
         JavascriptExecutor jsExecutor = ((JavascriptExecutor)webDriver);
         jsExecutor.executeScript(String.format("$('%s').show();", DEFAULT_MSG_WRAPPER_DIV_ID));

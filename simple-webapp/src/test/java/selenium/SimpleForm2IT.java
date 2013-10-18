@@ -1,9 +1,11 @@
 package selenium;
 
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import selenium.base.BaseChromeIT;
+import selenium.base.BaseWebDriverIT;
 import selenium.pages.SimpleForm2Page;
+import selenium.util.WebDriverFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,28 +13,43 @@ import selenium.pages.SimpleForm2Page;
  * Date: 16.10.13
  * Time: 09:30
  */
-public class SimpleForm2IT extends BaseChromeIT {
+public class SimpleForm2IT extends BaseWebDriverIT {
 
 
-    @Test
+   @Test
     public void test(){
 
-        final String url = "http://localhost:9999/simpleForm2.xhtml";
-        webDriver.get(url);
+        final String BASE_URL = "http://localhost:9999/simpleForm2.xhtml";
 
-        // init the page object with the different html elements
-        // already looked by id
-        SimpleForm2Page page = PageFactory.initElements(webDriver, SimpleForm2Page.class);
 
-        // send the username to the input text
-        page.sendUsername(constants.getProperty("simpleForm2.userName"));
 
-        // select the appropriate frameworks
-        // and check for message returned by the server
-        page.selectFrameworks(
-                constants.getProperty("simpleForm2.formOutputMessage"),
-                webDriver,
-                constants.getProperty("simpleForm2.usedFrameworks").split(",")
-        );
+       for (WebDriverFactory.Driver driver : avilableDrivers) {
+
+
+           WebDriver webDriver = WebDriverFactory.getDriver(driver, true);
+           webDriver.get(BASE_URL);
+
+
+
+           // init the page object with the different html elements
+           // already looked by id
+           SimpleForm2Page page = PageFactory.initElements(webDriver, SimpleForm2Page.class);
+
+           // send the username to the input text
+           page.sendUsername(constants.getProperty("simpleForm2.userName"));
+
+           // select the appropriate frameworks
+           // and check for message returned by the server
+           page.selectFrameworks(
+                   constants.getProperty("simpleForm2.formOutputMessage"),
+                   webDriver,
+                   constants.getProperty("simpleForm2.usedFrameworks").split(",")
+           );
+
+           webDriver.quit();
+       }
+
+
+
     }
 }
