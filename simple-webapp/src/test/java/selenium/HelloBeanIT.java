@@ -65,7 +65,7 @@ public class HelloBeanIT extends BaseChromeIT {
 
 
         assertThat(element.getText(), equalTo(expectedMessage));
-        assertThat(Integer.valueOf(element.getText()), greaterThan(2));
+
     }
 
 
