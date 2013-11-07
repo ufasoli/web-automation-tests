@@ -27,12 +27,12 @@ public class HelloBeanIT extends BaseWebDriverIT {
         System.out.println("******************************");
         System.out.println(String.format("Begin tests for class : %s ", HelloBeanIT.class));
         System.out.println("******************************");
-        final String BASE_URL = "http://localhost:9999/";
+        final String BASE_URL = "http://selenium-tests:9999/";
 
         for (WebDriverFactory.Driver driver : avilableDrivers) {
 
 
-            WebDriver webDriver = WebDriverFactory.getDriver(driver, true);
+            WebDriver webDriver = WebDriverFactory.getDriver(driver, Boolean.parseBoolean(config.get("grid").toString()));
             webDriver.get(BASE_URL);
 
             verifyPageTitle(constants.getProperty("helloBean.pageTitle"), webDriver);

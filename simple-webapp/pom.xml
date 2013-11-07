@@ -168,9 +168,7 @@
     </build>
 
 
-
-
-               <!-- Profiles Configuration -->
+    <!-- Profiles Configuration -->
 
     <profiles>
 
@@ -265,14 +263,35 @@
                         </executions>
                         <configuration>
                             <forkMode>never</forkMode>
+                            <parallel>classes</parallel>
+                            <threadCount>10</threadCount>
                         </configuration>
                     </plugin>
-
 
 
                 </plugins>
             </build>
         </profile>
+
+        <!-- Grid related profiles -->
+
+        <profile>
+            <id>grid-on</id>
+            <properties>
+                <grid.on>true</grid.on>
+            </properties>
+
+        </profile>
+
+
+        <profile>
+            <id>grid-off</id>
+            <properties>
+                <grid.on>false</grid.on>
+            </properties>
+
+        </profile>
+
 
         <!-- OS specific profiles-->
         <profile>

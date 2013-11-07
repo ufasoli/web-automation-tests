@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(BlockJUnit4ClassRunner.class)
 public class SimpleFormIT extends BaseWebDriverIT {
-    private final String BASE_URL = "http://localhost:9999/simpleForm.xhtml";
+    private final String BASE_URL = "http://selenium-tests:9999/simpleForm.xhtml";
 
     public SimpleFormIT() {
         System.out.println("**********************************************************************");
@@ -37,10 +37,11 @@ public class SimpleFormIT extends BaseWebDriverIT {
     @Test
     public void testFormError() {
 
+
         for (WebDriverFactory.Driver driver : avilableDrivers) {
 
 
-            WebDriver webDriver = WebDriverFactory.getDriver(driver, true);
+            WebDriver webDriver = WebDriverFactory.getDriver(driver, Boolean.parseBoolean(config.get("grid").toString()));
             webDriver.get(BASE_URL);
 
             writeMessage("About to test a form submit", false, webDriver);
@@ -74,7 +75,7 @@ public class SimpleFormIT extends BaseWebDriverIT {
         for (WebDriverFactory.Driver driver : avilableDrivers) {
 
 
-            WebDriver webDriver = WebDriverFactory.getDriver(driver, true);
+            WebDriver webDriver = WebDriverFactory.getDriver(driver, Boolean.parseBoolean(config.get("grid").toString()));
             webDriver.get(BASE_URL);
 
             writeMessage("About to test a form submit", false, webDriver);

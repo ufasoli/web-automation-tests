@@ -19,14 +19,14 @@ public class SimpleForm2IT extends BaseWebDriverIT {
    @Test
     public void test(){
 
-        final String BASE_URL = "http://localhost:9999/simpleForm2.xhtml";
+        final String BASE_URL = "http://selenium-tests:9999/simpleForm2.xhtml";
 
 
 
        for (WebDriverFactory.Driver driver : avilableDrivers) {
 
 
-           WebDriver webDriver = WebDriverFactory.getDriver(driver, true);
+           WebDriver webDriver = WebDriverFactory.getDriver(driver, Boolean.parseBoolean(config.get("grid").toString()));
            webDriver.get(BASE_URL);
 
 
